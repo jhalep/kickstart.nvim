@@ -6,14 +6,7 @@ vim.opt.fillchars:append { diff = "╱"}
 -- Keymaps
 local keymap = vim.api.nvim_set_keymap
 
--- Window Navigation
-keymap('n', '<C-h>', '<C-w>h', { noremap = true })
-keymap('n', '<C-j>', '<C-w>j', { noremap = true })
-keymap('n', '<C-k>', '<C-w>k', { noremap = true })
-keymap('n', '<C-l>', '<C-w>l', { noremap = true })
-
 -- Harpoon
-
 keymap('n', '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<CR>', { desc = '[H]arppon [A]dd file' })
 keymap('n', '<leader>ht', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { desc = '[H]arppon [T]oggle' })
 keymap('n', '<leader>h1', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', { desc = '[H]arpoon file [1]'})
