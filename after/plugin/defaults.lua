@@ -20,3 +20,9 @@ keymap('n', '<leader>fl', '<cmd>lua require("harpoon.ui").nav_next()<CR>', { des
 -- Diffview
 keymap("n", "<leader>gd", ":DiffviewOpen<cr>", { noremap= true})
 keymap("n", "<leader>tc", ":tabclose<cr>", { noremap= true})
+
+--Bufferline
+keymap("n", "<M-l>", "<cmd>bnext<CR>", { noremap= true})
+keymap("n", "<M-h>", "<cmd>bprevious<CR>", { noremap= true})
+keymap("n", "<leader>q", '<cmd>Bdelete!<cr>', { noremap= true})
+
