@@ -20,6 +20,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mxsdev/nvim-dap-vscode-js'
   },
   config = function()
     local dap = require 'dap'
@@ -41,6 +42,32 @@ return {
         'delve',
       },
     }
+
+    require('dap-vscode-js').setup({
+      debugger_path = os.getenv('HOME') .. '/Documents/vscode-js-debug',
+      adapters = { 'pwa-node', 'pwa-chrome', 'node-terminal'},
+      log_console_level = vim.log.levels.ERROR
+    })
+
+    for _, language in ipairs({ "typescript", "javascript"}) do
+      dap.configurations[language] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          cwd = "${workspaceFolder}"
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach",
+          processId = require'dap.utils'.pick_process,
+          cwd = "${workspaceFolder}",
+          restart = true
+        }
+      }
+    end
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue)
